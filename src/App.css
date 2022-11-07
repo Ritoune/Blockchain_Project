@@ -1,22 +1,27 @@
 .main-app {
     text-align: center;
-    margin: 100px;
+    display: block;
+    margin: auto; 
+    width: 40%;
+    border: solid 2px;
 }
 
-.cta-button {
+button {
     padding: 15px;
     border: none;
     border-radius: 12px;
     min-width: 250px;
     color: white;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
+    background: rgb(210, 8, 156);
 }
 
-.connect-wallet-button {
-    background: rgb(32, 129, 226);
+.table-container {
+    margin: auto;
+    width: min-content;
 }
 
-.mint-nft-button {
-    background: orange;
+.tr {
+    border: solid 2px;
 }

@@ -126,7 +126,7 @@ function App() {
               </button>
             </footer>
             <div className="px-4">
-              <div className="overflow-x-auto">
+              <div className="table-container overflow-x-auto">
                 <table className="table w-full">
                   <thead>
                     <tr>
@@ -156,7 +156,7 @@ function App() {
               </button>
             </div>
             <div className="px-4">
-              <div className="overflow-x-auto">
+              <div className=" table-container overflow-x-auto">
                 <table className="table w-full">
                   <thead>
                     <tr>
