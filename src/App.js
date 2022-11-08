@@ -96,15 +96,15 @@ function App() {
   };
 
   return (
-    <div className='main-app'>
+    <div className='main-app bg-gray-800'>
 
     <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
       <div>
         <form className="m-4" onSubmit={handleSubmit}>
-          <div className="credit-card w-full lg:w-3/4 sm:w-auto shadow-lg mx-auto rounded-xl bg-white">
+          <div className="credit-card w-full lg:w-3/4 sm:w-auto shadow-lg mx-auto rounded-xl bg-gray-500">
             <main className="mt-4 p-4">
-              <h1 className="text-xl font-semibold text-gray-700 text-center">
-                Read from smart contract
+              <h1 className="text-xl font-semibold text-white text-center">
+                Lecture du Smart Contract
               </h1>
               <div className="">
                 <div className="my-3">
@@ -112,7 +112,7 @@ function App() {
                     type="text"
                     name="addr"
                     className="input input-bordered block w-full focus:ring focus:outline-none"
-                    placeholder="ERC20 contract address"
+                    placeholder="Adresse du contrat ERC20"
                   />
                 </div>
               </div>
@@ -122,7 +122,7 @@ function App() {
                 type="submit"
                 className="btn btn-primary submit-button focus:ring focus:outline-none w-full"
               >
-                Get token info
+                OBTENIR DES INFORMATIONS SUR LE TOKEN
               </button>
             </footer>
             <div className="px-4">
@@ -130,9 +130,9 @@ function App() {
                 <table className="table w-full">
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Symbol</th>
-                      <th>Total supply</th>
+                      <th>Nom</th>
+                      <th>Symbole</th>
+                      <th>Offre totale</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -152,7 +152,7 @@ function App() {
                 type="submit"
                 className="btn btn-primary submit-button focus:ring focus:outline-none w-full"
               >
-                Get my balance
+                OBTENIR VOTRE SOLDE
               </button>
             </div>
             <div className="px-4">
@@ -160,8 +160,8 @@ function App() {
                 <table className="table w-full">
                   <thead>
                     <tr>
-                      <th>Address</th>
-                      <th>Balance</th>
+                      <th>Addresse</th>
+                      <th>Solde</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -175,10 +175,10 @@ function App() {
             </div>
           </div>
         </form>
-        <div className="m-4 credit-card w-full lg:w-3/4 sm:w-auto shadow-lg mx-auto rounded-xl bg-white">
+        <div className="m-4 credit-card w-full lg:w-3/4 sm:w-auto shadow-lg mx-auto rounded-xl bg-gray-500">
           <div className="mt-4 p-4">
-            <h1 className="text-xl font-semibold text-gray-700 text-center">
-              Write to contract
+            <h1 className="text-xl font-semibold text-white text-center">
+              Écrire au contrat
             </h1>
 
             <form onSubmit={handleTransfer}>
@@ -187,7 +187,7 @@ function App() {
                   type="text"
                   name="recipient"
                   className="input input-bordered block w-full focus:ring focus:outline-none"
-                  placeholder="Recipient address"
+                  placeholder="Adresse du destinataire"
                 />
               </div>
               <div className="my-3">
@@ -195,7 +195,7 @@ function App() {
                   type="text"
                   name="amount"
                   className="input input-bordered block w-full focus:ring focus:outline-none"
-                  placeholder="Amount to transfer"
+                  placeholder="Montant à transférer"
                 />
               </div>
               <footer className="p-4">
@@ -203,7 +203,7 @@ function App() {
                   type="submit"
                   className="btn btn-primary submit-button focus:ring focus:outline-none w-full"
                 >
-                  Transfer
+                  Transfert
                 </button>
               </footer>
             </form>
@@ -211,10 +211,10 @@ function App() {
         </div>
       </div>
       <div>
-        <div className="m-4 credit-card w-full lg:w-3/4 sm:w-auto shadow-lg mx-auto rounded-xl bg-white">
+        <div className="m-4 credit-card w-full lg:w-3/4 sm:w-auto shadow-lg mx-auto rounded-xl bg-gray-500">
           <div className="mt-4 p-4">
-            <h1 className="text-xl font-semibold text-gray-700 text-center">
-              Recent transactions
+            <h1 className="text-xl font-semibold text-white text-center">
+              Transactions récentes
             </h1>
             <p>
               <TxList txs={txs} />
