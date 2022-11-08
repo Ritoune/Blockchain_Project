@@ -25,3 +25,7 @@ button {
 .tr {
     border: solid 2px;
 } */
+
+.main-app {
+    border: solid 2px transparent;
+}
