@@ -98,15 +98,13 @@ function App() {
   return (
     <div className='main-app bg-gray-800'>
 
-    <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
       <div>
         <form className="m-4" onSubmit={handleSubmit}>
-          <div className="credit-card w-full lg:w-3/4 sm:w-auto shadow-lg mx-auto rounded-xl bg-gray-500">
-            <main className="mt-4 p-4">
+          <div className="m-4 credit-card w-full lg:w-3/4 sm:w-auto shadow-lg mx-auto rounded-xl bg-gray-500">
+            <div className="mt-4 p-4">
               <h1 className="text-xl font-semibold text-white text-center">
-                Lecture du Smart Contract
+                Résumé du Smart Contract
               </h1>
-              <div className="">
                 <div className="my-3">
                   <input
                     type="text"
@@ -114,17 +112,18 @@ function App() {
                     className="input input-bordered block w-full focus:ring focus:outline-none"
                     placeholder="Adresse du contrat ERC20"
                   />
-                </div>
               </div>
-            </main>
-            <footer className="p-4">
-              <button
+            </div>
+
+            <div className="p-4">
+            <button
                 type="submit"
                 className="btn btn-primary submit-button focus:ring focus:outline-none w-full"
               >
                 OBTENIR DES INFORMATIONS SUR LE TOKEN
               </button>
-            </footer>
+            </div>
+
             <div className="px-4">
               <div className="table-container overflow-x-auto">
                 <table className="table w-full">
@@ -132,7 +131,7 @@ function App() {
                     <tr>
                       <th>Nom</th>
                       <th>Symbole</th>
-                      <th>Offre totale</th>
+                      <th>Montant total</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -140,27 +139,27 @@ function App() {
                       <th>{contractInfo.tokenName}</th>
                       <td>{contractInfo.tokenSymbol}</td>
                       <td>{String(contractInfo.totalSupply)}</td>
-                      <td>{contractInfo.deployedAt}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
+
             <div className="p-4">
               <button
                 onClick={getMyBalance}
                 type="submit"
-                className="btn btn-primary submit-button focus:ring focus:outline-none w-full"
-              >
+                className="btn btn-primary submit-button focus:ring focus:outline-none w-full">
                 OBTENIR VOTRE SOLDE
               </button>
             </div>
-            <div className="px-4">
+
+            <div className="p-4">
               <div className=" table-container overflow-x-auto">
                 <table className="table w-full">
                   <thead>
                     <tr>
-                      <th>Addresse</th>
+                      <th>Adresse</th>
                       <th>Solde</th>
                     </tr>
                   </thead>
@@ -173,56 +172,67 @@ function App() {
                 </table>
               </div>
             </div>
+            
           </div>
-        </form>
-        <div className="m-4 credit-card w-full lg:w-3/4 sm:w-auto shadow-lg mx-auto rounded-xl bg-gray-500">
-          <div className="mt-4 p-4">
-            <h1 className="text-xl font-semibold text-white text-center">
-              Écrire au contrat
-            </h1>
 
-            <form onSubmit={handleTransfer}>
-              <div className="my-3">
-                <input
-                  type="text"
-                  name="recipient"
-                  className="input input-bordered block w-full focus:ring focus:outline-none"
-                  placeholder="Adresse du destinataire"
-                />
+        </form>
+
+        <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+          <div>
+            <div className="m-4 credit-card w-full lg:w-3/4 sm:w-auto shadow-lg mx-auto rounded-xl bg-gray-500">
+              <div className="mt-4 p-4">
+                <h1 className="text-xl font-semibold text-white text-center">
+                  Envoyer des tokens
+                </h1>
+
+                <form onSubmit={handleTransfer}>
+                  <div className="my-3">
+                    <input
+                      type="text"
+                      name="recipient"
+                      className="input input-bordered block w-full focus:ring focus:outline-none"
+                      placeholder="Adresse du destinataire"
+                    />
+                  </div>
+
+                  <div className="my-3">
+                    <input
+                      type="text"
+                      name="amount"
+                      className="input input-bordered block w-full focus:ring focus:outline-none"
+                      placeholder="Montant à transférer"
+                    />
+                  </div>
+
+                  <div className="p-4">
+                    <button
+                      type="submit"
+                      className="btn btn-primary submit-button focus:ring focus:outline-none w-full">
+                      Transférer
+                    </button>
+                  </div>
+
+                </form>
+
               </div>
-              <div className="my-3">
-                <input
-                  type="text"
-                  name="amount"
-                  className="input input-bordered block w-full focus:ring focus:outline-none"
-                  placeholder="Montant à transférer"
-                />
+            </div>
+          </div>
+
+
+          <div>
+            <div className="m-4 credit-card w-full lg:w-3/4 sm:w-auto shadow-lg mx-auto rounded-xl bg-gray-500">
+              <div className="mt-4 p-4">
+                <h1 className="text-xl font-semibold text-white text-center">
+                  Transactions récentes
+                </h1>
+                <p>
+                  <TxList txs={txs} />
+                </p>
               </div>
-              <footer className="p-4">
-                <button
-                  type="submit"
-                  className="btn btn-primary submit-button focus:ring focus:outline-none w-full"
-                >
-                  Transfert
-                </button>
-              </footer>
-            </form>
+            </div>
           </div>
         </div>
       </div>
-      <div>
-        <div className="m-4 credit-card w-full lg:w-3/4 sm:w-auto shadow-lg mx-auto rounded-xl bg-gray-500">
-          <div className="mt-4 p-4">
-            <h1 className="text-xl font-semibold text-white text-center">
-              Transactions récentes
-            </h1>
-            <p>
-              <TxList txs={txs} />
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
     </div>
   )
 }

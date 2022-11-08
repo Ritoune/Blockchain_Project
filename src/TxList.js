@@ -9,7 +9,7 @@ export default function TxList({ txs }) {
               <p>A: {item.to}</p>
               <p>Montant: {item.amount}</p>
               <a href={`https://rinkeby.etherscan.io/tx/${item.txHash}`}>
-                Vérifier dans l'explorateur de bloc
+                Détails sur Etherscan
               </a>
             </div>
           </div>
