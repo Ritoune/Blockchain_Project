@@ -96,7 +96,7 @@ function App() {
   };
 
   return (
-    <div className='main-app bg-gray-800'>
+    <div className="main-app bg-purple-200">
 
       <div>
         <form className="m-4" onSubmit={handleSubmit}>
@@ -118,8 +118,7 @@ function App() {
             <div className="p-4">
             <button
                 type="submit"
-                className="btn btn-primary submit-button focus:ring focus:outline-none w-full"
-              >
+                className="btn btn-primary submit-button focus:ring focus:outline-none w-full">
                 OBTENIR DES INFORMATIONS SUR LE TOKEN
               </button>
             </div>
