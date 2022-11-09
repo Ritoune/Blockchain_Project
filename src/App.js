@@ -24,6 +24,7 @@ function App() {
 
   useEffect(() => {
     if (contractInfo.address !== "-") {
+      //Intégration de l'ABI du smart contract
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const erc20 = new ethers.Contract(
         contractInfo.address,
@@ -31,6 +32,7 @@ function App() {
         provider
       );
 
+      //Récupération de l'interaction de transfert de tokens depuis l'ABI
       erc20.on("Transfer", (from, to, amount, event) => {
         console.log({ from, to, amount, event });
 
@@ -59,6 +61,7 @@ function App() {
 
     const erc20 = new ethers.Contract(data.get("addr"), abi, provider);
 
+    //Récupération des informatiosn du token
     const tokenName = await erc20.name();
     const tokenSymbol = await erc20.symbol();
     const totalSupply = await erc20.totalSupply();
@@ -71,6 +74,7 @@ function App() {
     });
   };
 
+  //Méthode de récupération du solde du wallet en token
   const getMyBalance = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     await provider.send("eth_requestAccounts", []);
@@ -85,6 +89,7 @@ function App() {
     });
   };
 
+  //Méthode de transfert de tokens
   const handleTransfer = async (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
