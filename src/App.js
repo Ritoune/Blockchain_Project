@@ -8,36 +8,37 @@ const contractAddress = "0x298DB519bd228833845c9DEC697EAb8CeE67BFad";
 
 function App() {
   
-  const [txs, setTxs] = useState([]);
+  const [txs, setText] = useState([]);
   const [contractListened, setContractListened] = useState();
   const [error, setError] = useState();
-  const [contractInfo, setContractInfo] = useState({
+  const [contractInformation, setContractInformtion] = useState({
     address: "-",
     tokenName: "-",
     tokenSymbol: "-",
     totalSupply: "-"
   });
-  const [balanceInfo, setBalanceInfo] = useState({
+  const [balanceInformation, setBalanceInfomartion] = useState({
     address: "-",
     balance: "-"
   });
 
   useEffect(() => {
-    if (contractInfo.address !== "-") {
+    if (contractInformation.address !== "-") {
       //Intégration de l'ABI du smart contract
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const erc20 = new ethers.Contract(
-        contractInfo.address,
+        contractInformation.address,
         abi,
         provider
       );
 
       //Récupération de l'interaction de transfert de tokens depuis l'ABI
       erc20.on("Transfer", (from, to, amount, event) => {
+
         console.log({ from, to, amount, event });
 
-        setTxs((currentTxs) => [
-          ...currentTxs,
+        setText((currentText) => [
+          ...currentText,
           {
             txHash: event.transactionHash,
             from,
@@ -46,15 +47,17 @@ function App() {
           }
         ]);
       });
+
       setContractListened(erc20);
 
       return () => {
         contractListened.removeAllListeners();
       };
     }
-  }, [contractInfo.address]);
+  }, [contractInformation.address]);
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
     const data = new FormData(e.target);
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -66,7 +69,8 @@ function App() {
     const tokenSymbol = await erc20.symbol();
     const totalSupply = await erc20.totalSupply();
 
-    setContractInfo({
+    setContractInformtion({
+
       address: data.get("addr"),
       tokenName,
       tokenSymbol,
@@ -76,28 +80,33 @@ function App() {
 
   //Méthode de récupération du solde du wallet en token
   const getMyBalance = async () => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    await provider.send("eth_requestAccounts", []);
-    const erc20 = new ethers.Contract(contractInfo.address, abi, provider);
-    const signer = await provider.getSigner();
-    const signerAddress = await signer.getAddress();
-    const balance = await erc20.balanceOf(signerAddress);
 
-    setBalanceInfo({
-      address: signerAddress,
-      balance: String(balance)
+    const newProvider = new ethers.providers.Web3Provider(window.ethereum);
+    await newProvider.send("eth_requestAccounts", []);
+    const erc20 = new ethers.Contract(contractInformation.address, abi, newProvider);
+    const newSigner = await newProvider.getSigner();
+    const newSignerAddress = await newSigner.getAddress();
+    const newBalance = await erc20.balanceOf(newSignerAddress);
+
+    setBalanceInfomartion({
+
+      address: newSignerAddress,
+      balance: String(newBalance)
+
     });
   };
 
   //Méthode de transfert de tokens
   const handleTransfer = async (e) => {
     e.preventDefault();
-    const data = new FormData(e.target);
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    await provider.send("eth_requestAccounts", []);
-    const signer = await provider.getSigner();
-    const erc20 = new ethers.Contract(contractInfo.address, abi, signer);
-    await erc20.transfer(data.get("recipient"), data.get("amount"));
+
+    const newData = new FormData(e.target);
+    const newProvider = new ethers.providers.Web3Provider(window.ethereum);
+    await newProvider.send("eth_requestAccounts", []);
+    const newSigner = await newProvider.getSigner();
+    const erc20 = new ethers.Contract(contractInformation.address, abi, newSigner);
+    await erc20.transfer(newData.get("recipient"), newData.get("amount"));
+    
   };
 
   return (
@@ -140,9 +149,11 @@ function App() {
                   </thead>
                   <tbody>
                     <tr>
-                      <th>{contractInfo.tokenName}</th>
-                      <td>{contractInfo.tokenSymbol}</td>
-                      <td>{String(contractInfo.totalSupply)}</td>
+                      <th>{contractInformation.tokenName}</th>
+
+                      <td>{contractInformation.tokenSymbol}</td>
+
+                      <td>{String(contractInformation.totalSupply)}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -169,8 +180,8 @@ function App() {
                   </thead>
                   <tbody>
                     <tr>
-                      <th>{balanceInfo.address}</th>
-                      <td>{balanceInfo.balance}</td>
+                      <th>{balanceInformation.address}</th>
+                      <td>{balanceInformation.balance}</td>
                     </tr>
                   </tbody>
                 </table>
